@@ -4,32 +4,31 @@ import Sidebar from '../../components/Navigation/Sidebar';
 import { useEffect, useState } from 'react';
 import { getExercisesByClassroom } from '../../services/exercises.service';
 import { getClassroomById } from '../../services/classroom.service';
-import { useParams } from 'react-router-dom';
+import { getUserProfile } from '../../services/user.service';
+import { Link, useParams } from 'react-router-dom';
+import { FaArrowAltCircleRight, FaChartBar, FaCircle, FaPencilAlt, FaPlusCircle } from 'react-icons/fa';
 
 export const ListExerciseView = () => {
   const { classroomId } = useParams();
   const [exercises, setExercises] = useState([])
   const [classroom, setClassroom] = useState({})
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     const fetchData = async () => {
       const fetchExercises = await getExercisesByClassroom(classroomId)
       const fetchClassroom = await getClassroomById(classroomId)
+      const fetchUser = await getUserProfile()
 
       setExercises(fetchExercises)
       setClassroom(fetchClassroom)
+      setUser(fetchUser)
     }
 
     fetchData()
   }, [])
 
-  const aula = {
-    nombre: "Programación I",
-    codigo: "ABC123",
-    profesor: "Juan Pérez",
-  };
-
-  const isProfessor = true
+  const isProfessor = user.appRoleId == 1
 
   return (
     <>
@@ -61,11 +60,6 @@ export const ListExerciseView = () => {
                         className="fw-bold px-2"
                       >
                         Código
-                        <a
-                          style={{ color: "var(--card)" }}
-                          className="icon-pencil"
-                          href={`/aula/${classroom.code}/editar-codigo`}
-                        ></a>
                       </span>
                       <div>
                         <p className="codigo-clase fw-bold m-0 p-0">
@@ -82,16 +76,20 @@ export const ListExerciseView = () => {
                     <div className="botones mb-2">
                       <a className="clase-boton" href="/ejercicio/nuevo">
                         <i className="icon-plus"></i>
+                        <FaPlusCircle />
                         <span>Nuevo Ejercicio</span>
                       </a>
                       <a className="clase-boton" href="/reporte/calificaciones">
-                        <i className="icon-chart-bar"></i>
+                        <FaChartBar />
                         <span>Calificaciones</span>
                       </a>
-                      <a className="clase-boton boton-editar-clase" href="/aula/editar">
-                        <i className="icon-pencil"></i>
+                      <Link 
+                        className="clase-boton boton-editar-clase" 
+                        to={`/classroom/${classroomId}/edit`}
+                      >
+                        <FaPencilAlt />
                         <span>Editar Clase</span>
-                      </a>
+                      </Link>
                     </div>
                   )}
 
@@ -102,13 +100,15 @@ export const ListExerciseView = () => {
                   >
                     {exercises.map((ejercicio) => (
                       <div key={ejercicio.id} className="ejercicio col-12">
-                        <i className="circulo icon-circle-empty icono-accent"></i>
+                        <FaCircle className="icono-accent" />
                         <p className="m-0 p-0">{ejercicio.name}</p>
                         <p className="fecha my-0 p-0">{ejercicio.dueDate}</p>
-                        <a
+                        <Link
                           className="icon-right"
-                          href={`/ejercicio/${ejercicio.id}`}
-                        ></a>
+                          to={`/classroom/${classroomId}/exercise/${ejercicio.id}`}
+                        >
+                          <FaArrowAltCircleRight />
+                        </Link>
                       </div>
                     ))}
                   </div>

@@ -6,7 +6,7 @@ import { TopBar } from "../../components/Navigation/TopBar";
 import { FaPlusCircle } from "react-icons/fa";
 import TestCase from "../../components/TestCase/TestCase";
 import { useTestCases } from "../../hooks/useTestCases";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getExercisesById, updateExercise } from "../../services/exercises.service";
 
 const EditExerciseView = () => {
@@ -14,6 +14,7 @@ const EditExerciseView = () => {
   const [nombre, setNombre] = useState("Ejemplo de ejercicio");
   const [descripcion, setDescripcion] = useState("Descripción inicial cargada");
   const [fechaEntrega, setFechaEntrega] = useState("2025-10-01T12:00");
+  const navigate = useNavigate();
 
   const {
     pruebas,
@@ -32,12 +33,13 @@ const EditExerciseView = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const response = await updateExercise(classroomId, exerciseId, nombre, descripcion, fechaEntrega, getParsedTestCases(parseInt(exerciseId)));
+    await updateExercise(classroomId, exerciseId, nombre, descripcion, fechaEntrega, getParsedTestCases(parseInt(exerciseId)));
+
+    navigate(`/classroom/${classroomId}/exercise`);
   };
 
   const handleDelete = () => {
     console.log("🗑️ Eliminar ejercicio");
-    // Aquí iría la lógica para borrar en la API
   };
 
   useEffect(() => {
@@ -144,7 +146,7 @@ const EditExerciseView = () => {
               </div>
 
               {/* Botones */}
-              <div className="button-group mt-3">
+              <div className="d-flex gap-5 mt-3">
                 <button type="submit" className="button-secondary boton-guardar">
                   Guardar
                 </button>

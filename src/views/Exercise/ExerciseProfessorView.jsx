@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaCircle, FaCode, FaPencilAlt, FaCheck, FaTimes, FaClock } from "react-icons/fa";
 import { TopBar } from "../../components/Navigation/TopBar";
 import Sidebar from "../../components/Navigation/Sidebar";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getExercisesById } from "../../services/exercises.service";
 import { getSubmissions, assignGrade } from "../../services/submission.service";
 
@@ -65,9 +65,11 @@ const ExerciseProfessorView = () => {
                     </button>
                   </div>
                   <div className="title-button-container" style={{ minWidth: "150px" }}>
-                    <button className="card-button" type="button">
-                      <FaPencilAlt className="icon-pencil" /> Editar ejercicio
-                    </button>
+                    <Link to={`/classroom/${classroomId}/exercise/${exerciseId}/edit`} style={{ textDecoration: 'none', width: '100%'}}>
+                      <button className="card-button" type="button">
+                        <FaPencilAlt className="icon-pencil" /> Editar ejercicio
+                      </button>
+                    </Link>
                   </div>
                   <button type="submit" className="button" style={{ minWidth: "150px" }}>
                     Guardar

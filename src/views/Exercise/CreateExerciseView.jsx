@@ -6,7 +6,7 @@ import { TopBar } from "../../components/Navigation/TopBar";
 import { FaPlusCircle } from "react-icons/fa";
 import TestCase from "../../components/TestCase/TestCase";
 import { useTestCases } from "../../hooks/useTestCases";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { createExercise } from "../../services/exercises.service";
 
 const CreateExerciseView = () => {
@@ -14,6 +14,7 @@ const CreateExerciseView = () => {
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [fechaEntrega, setFechaEntrega] = useState("");
+  const navigate = useNavigate();
 
   const {
     pruebas,
@@ -30,7 +31,9 @@ const CreateExerciseView = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const response = await createExercise(classroomId, nombre, descripcion, fechaEntrega, getParsedTestCases());
+    await createExercise(classroomId, nombre, descripcion, fechaEntrega, getParsedTestCases());
+  
+    navigate(`/classroom/${classroomId}/exercise`);
   };
 
   return (
