@@ -1,9 +1,27 @@
 import '../../styles/lista-ejercicios.css'
 import { TopBar } from '../../components/Navigation/TopBar'
 import Sidebar from '../../components/Navigation/Sidebar';
+import { useEffect, useState } from 'react';
+import { getExercisesByClassroom } from '../../services/exercises.service';
+import { getClassroomById } from '../../services/classroom.service';
+import { useParams } from 'react-router-dom';
 
 export const ListExerciseView = () => {
+  const { classroomId } = useParams();
   const [exercises, setExercises] = useState([])
+  const [classroom, setClassroom] = useState({})
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchExercises = await getExercisesByClassroom(classroomId)
+      const fetchClassroom = await getClassroomById(classroomId)
+
+      setExercises(fetchExercises)
+      setClassroom(fetchClassroom)
+    }
+
+    fetchData()
+  }, [])
 
   const aula = {
     nombre: "Programación I",
@@ -24,10 +42,7 @@ export const ListExerciseView = () => {
               <div className="titulo-clase mb-3">
                 <div className="titulo">
                   <div className="cuadrado"></div>
-                  <h1 className="nombre-clase m-0 p-0">{aula.nombre}</h1>
-                  {isProfessor && (
-                    <strong className="nombre-profesor">{aula.profesor}</strong>
-                  )}
+                  <h1 className="nombre-clase m-0 p-0">{classroom.name}</h1>
                 </div>
               </div>
             </div>
@@ -49,12 +64,12 @@ export const ListExerciseView = () => {
                         <a
                           style={{ color: "var(--card)" }}
                           className="icon-pencil"
-                          href={`/aula/${aula.codigo}/editar-codigo`}
+                          href={`/aula/${classroom.code}/editar-codigo`}
                         ></a>
                       </span>
                       <div>
                         <p className="codigo-clase fw-bold m-0 p-0">
-                          {aula.codigo}
+                          {classroom.code}
                         </p>
                       </div>
                     </div>
@@ -86,13 +101,13 @@ export const ListExerciseView = () => {
                     className="lista-ejercicios"
                   >
                     {exercises.map((ejercicio) => (
-                      <div key={ejercicio.idEjercicio} className="ejercicio col-12">
+                      <div key={ejercicio.id} className="ejercicio col-12">
                         <i className="circulo icon-circle-empty icono-accent"></i>
-                        <p className="m-0 p-0">{ejercicio.nombre}</p>
-                        <p className="fecha my-0 p-0">{ejercicio.fechaEntrega}</p>
+                        <p className="m-0 p-0">{ejercicio.name}</p>
+                        <p className="fecha my-0 p-0">{ejercicio.dueDate}</p>
                         <a
                           className="icon-right"
-                          href={`/ejercicio/${ejercicio.idEjercicio}`}
+                          href={`/ejercicio/${ejercicio.id}`}
                         ></a>
                       </div>
                     ))}

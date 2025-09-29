@@ -1,23 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/ejercicio.css";
 import Sidebar from "../../components/Navigation/Sidebar";
 import { TopBar } from "../../components/Navigation/TopBar";
 import { FaRegCircle, FaCheck, FaTimes, FaClock } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import { getExercisesById } from "../../services/exercises.service";
+import { getSubmissionById } from "../../services/submission.service";
 
 const ExerciseStudentView = () => {
-  // 🔹 Datos de prueba (mock)
-  const ejercicio = {
-    nombre: "Ejercicio 1: Suma de Números",
-    fechaEntrega: "2025-10-05T23:59",
-    descripcion:
-      "Implementa una función llamada `sumar(a, b)` que retorne la suma de dos números enteros.",
-  };
+  const [exercise, setExercise] = useState({})
+  const [submission, setSubmission] = useState({})
+  const { classroomId, exerciseId} = useParams();
 
-  const entrega = {
-    notaObtenida: 85,
-    resuelto: true,
-    aTiempo: true, // este lo dejamos aunque no estaba en la plantilla
-  };
+  useEffect(() =>{
+    const fetchData = async () => { 
+      const exerciseData = await getExercisesById(classroomId, exerciseId);
+      const submissionData = await getSubmissionById(exerciseId);
+
+      setExercise(exerciseData)
+      setSubmission(submissionData)
+    }
+
+    fetchData()
+  }, [])
 
   const handleVerCodigo = () => {
     console.log("Navegar a ver código del ejercicio:", ejercicio.nombre);
@@ -34,15 +39,15 @@ const ExerciseStudentView = () => {
           {/* Header */}
           <div className="exercise-header d-flex align-items-center gap-2 mb-4">
             <FaRegCircle className="icon-circle-empty" />
-            <span className="ejercicio-titulo">{ejercicio.nombre}</span>
+            <span className="ejercicio-titulo">{exercise.name}</span>
           </div>
 
           {/* Contenido principal */}
           <div className="exercise-container row">
             {/* Info del ejercicio */}
             <div className="exercise-content col-12 col-lg-8 mb-3">
-              <p className="date-info">{ejercicio.fechaEntrega}</p>
-              <p className="descripcion-ejercicio">{ejercicio.descripcion}</p>
+              <p className="date-info">{exercise.dueDate}</p>
+              <p className="descripcion-ejercicio">{exercise.description}</p>
             </div>
 
             {/* Info de la entrega */}
@@ -56,9 +61,7 @@ const ExerciseStudentView = () => {
                       <span>Nota</span>
                     </td>
                     <td className="score">
-                      {entrega?.notaObtenida
-                        ? `${entrega.notaObtenida}/100`
-                        : "0/100"}
+                      {submission.grade}
                     </td>
                   </tr>
 
@@ -70,7 +73,7 @@ const ExerciseStudentView = () => {
                     </td>
                     <td>
                       <div className="checkmark">
-                        {entrega?.resuelto ? (
+                        {submission.status == 1 ? (
                           <FaCheck className="icon-check" />
                         ) : (
                           <FaTimes className="icon-cancel" />
@@ -87,7 +90,7 @@ const ExerciseStudentView = () => {
                     </td>
                     <td>
                       <div className="clock">
-                        {entrega?.aTiempo ? (
+                        {submission.submittedAt <= exercise.dueDate ? (
                           <FaCheck className="icon-check" />
                         ) : (
                           <FaClock className="icon-clock" />

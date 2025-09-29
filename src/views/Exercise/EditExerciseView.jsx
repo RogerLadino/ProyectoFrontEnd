@@ -1,57 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/ejercicio.css";
 import "../../styles/pruebas.css";
 import Sidebar from "../../components/Navigation/Sidebar";
 import { TopBar } from "../../components/Navigation/TopBar";
 import { FaPlusCircle } from "react-icons/fa";
-import TestCase from "../../components/TestCases/TestCase";
+import TestCase from "../../components/TestCase/TestCase";
 import { useTestCases } from "../../hooks/useTestCases";
-
-// Tipos permitidos
-const tipos = ["int", "string", "float", "boolean", "json"];
+import { useParams } from "react-router-dom";
+import { getExercisesById, updateExercise } from "../../services/exercises.service";
 
 const EditExerciseView = () => {
-  // 🔹 Simulamos datos iniciales como si vinieran de la API
+  const { classroomId, exerciseId } = useParams();
   const [nombre, setNombre] = useState("Ejemplo de ejercicio");
   const [descripcion, setDescripcion] = useState("Descripción inicial cargada");
   const [fechaEntrega, setFechaEntrega] = useState("2025-10-01T12:00");
 
-  // 🔹 Hook para pruebas
   const {
     pruebas,
+    setPruebas,
     agregarPrueba,
-    actualizarPrueba,
     eliminarPrueba,
-  } = useTestCases([
-    {
-      idPrueba: 1,
-      nombreFuncion: "sumar",
-      entrada: [
-        { tipo: "int", valor: "2" },
-        { tipo: "int", valor: "3" },
-      ],
-      salida: { tipo: "int", valor: "5" },
-    },
-  ]);
+    actualizarPrueba,
+    agregarParametro,
+    eliminarParametro,
+    actualizarParametro,
+    actualizarSalida,
+    getParsedTestCases,
+    parseTestCases
+  } = useTestCases();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const payload = {
-      nombre,
-      descripcion,
-      fechaEntrega,
-      pruebas,
-    };
-
-    console.log("🚀 Editar ejercicio:", payload);
-    // Aquí iría la llamada a la API
+  
+    const response = await updateExercise(classroomId, exerciseId, nombre, descripcion, fechaEntrega, getParsedTestCases(parseInt(exerciseId)));
   };
 
   const handleDelete = () => {
     console.log("🗑️ Eliminar ejercicio");
     // Aquí iría la lógica para borrar en la API
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const exercise = await getExercisesById(classroomId, exerciseId);
+
+      console.log(exercise)
+      setNombre(exercise.name);
+      setDescripcion(exercise.description);
+      setFechaEntrega(exercise.dueDate);
+      let testCases = parseTestCases(exercise.testCases);
+      setPruebas(testCases);
+    }
+
+    fetchData()
+  }, [])
 
   return (
     <div className="container-fluid m-0 p-0">
@@ -130,9 +132,13 @@ const EditExerciseView = () => {
                   <TestCase
                     key={pIndex}
                     prueba={prueba}
-                    onUpdate={(newData) => actualizarPrueba(pIndex, newData)}
-                    onDelete={() => eliminarPrueba(pIndex)}
-                    tipos={tipos}
+                    index={pIndex}
+                    actualizarPrueba={actualizarPrueba}
+                    eliminarPrueba={eliminarPrueba}
+                    agregarParametro={agregarParametro}
+                    eliminarParametro={eliminarParametro}
+                    actualizarParametro={actualizarParametro}
+                    actualizarSalida={actualizarSalida}
                   />
                 ))}
               </div>

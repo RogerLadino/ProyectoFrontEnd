@@ -6,8 +6,11 @@ import { TopBar } from "../../components/Navigation/TopBar";
 import { FaPlusCircle } from "react-icons/fa";
 import TestCase from "../../components/TestCase/TestCase";
 import { useTestCases } from "../../hooks/useTestCases";
+import { useParams } from "react-router-dom";
+import { createExercise } from "../../services/exercises.service";
 
 const CreateExerciseView = () => {
+  const { classroomId } = useParams();
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [fechaEntrega, setFechaEntrega] = useState("");
@@ -21,12 +24,13 @@ const CreateExerciseView = () => {
     eliminarParametro,
     actualizarParametro,
     actualizarSalida,
+    getParsedTestCases
   } = useTestCases();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload = { nombre, descripcion, fechaEntrega, pruebas };
-    console.log("🚀 Guardar ejercicio:", payload);
+  
+    const response = await createExercise(classroomId, nombre, descripcion, fechaEntrega, getParsedTestCases());
   };
 
   return (
