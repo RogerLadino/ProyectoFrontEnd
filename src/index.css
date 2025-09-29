@@ -1,0 +1,28 @@
+/* 1. RESET Y BASE DE LA PÁGINA */
+html, body, #root {
+  /* Asegura que la aplicación ocupe toda la pantalla */
+  height: 100%; 
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* Estilos de fondo y tipografía para toda la aplicación */
+  background-color: #1e1919; 
+  color: white; 
+  font-family: system-ui, sans-serif;
+}
+
+/* 2. ESTILO DEL CONTENEDOR PRINCIPAL DE REACT */
+/* Si tu componente principal (App.jsx) usa la clase .App */
+.App {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* 3. CLASES GLOBALES DE BOOTSTRAP PARA DAR UN POCO DE CONSISTENCIA */
+/* Asegura que los enlaces de Bootstrap se vean bien en el fondo oscuro */
+a {
+  color: inherit;
+  text-decoration: none;
+}
