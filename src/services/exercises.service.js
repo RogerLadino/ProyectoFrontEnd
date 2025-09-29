@@ -99,3 +99,21 @@ export const updateExercise = async (
     throw error;
   }
 };
+
+export async function deleteExercise(classroomId, exerciseId) {
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.delete(`${API_URL}/api/classroom/${classroomId}/exercise/${exerciseId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting exercise:", error);
+    throw error;
+  }
+}
+

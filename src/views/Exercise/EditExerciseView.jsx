@@ -7,7 +7,7 @@ import { FaPlusCircle } from "react-icons/fa";
 import TestCase from "../../components/TestCase/TestCase";
 import { useTestCases } from "../../hooks/useTestCases";
 import { useNavigate, useParams } from "react-router-dom";
-import { getExercisesById, updateExercise } from "../../services/exercises.service";
+import { deleteExercise, getExercisesById, updateExercise } from "../../services/exercises.service";
 
 const EditExerciseView = () => {
   const { classroomId, exerciseId } = useParams();
@@ -38,8 +38,10 @@ const EditExerciseView = () => {
     navigate(`/classroom/${classroomId}/exercise`);
   };
 
-  const handleDelete = () => {
-    console.log("🗑️ Eliminar ejercicio");
+  const handleDelete = async () => {
+    await deleteExercise(classroomId, exerciseId);
+
+    navigate(`/classroom/${classroomId}/exercise`);
   };
 
   useEffect(() => {
