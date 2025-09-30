@@ -8,14 +8,29 @@ import {
   FiSend,
   FiCheckCircle,
 } from "react-icons/fi";
+import AceEditor from "react-ace";
+
+// Importar lenguajes y tema de Ace
+import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/mode-html";
+import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/ext-language_tools";
 
 import "../../styles/codigo.css";
 import { TopBar } from "../../components/Navigation/TopBar";
 
 export function CodeView() {
   const [activeTab, setActiveTab] = useState("ejercicio");
+  const [language, setLanguage] = useState("python");
+  const [code, setCode] = useState("");
 
-  const isProfessor = true 
+  const isProfessor = true;
+
+  const handleCodeChange = (newValue) => {
+    setCode(newValue);
+    console.log("Nuevo código:", newValue);
+  };
 
   return (
     <div className="codeview">
@@ -80,10 +95,12 @@ export function CodeView() {
                       <p>Código</p>
                     </div>
                     <div className="editor-title-item">
-                      <select className="language-select">
-                        <option value="python" defaultValue>
-                          Python
-                        </option>
+                      <select
+                        className="language-select"
+                        value={language}
+                        onChange={(e) => setLanguage(e.target.value)}
+                      >
+                        <option value="python">Python</option>
                         <option value="javascript">JavaScript</option>
                         <option value="html">HTML</option>
                       </select>
@@ -91,7 +108,23 @@ export function CodeView() {
                     </div>
                   </div>
                   <div className="editor-body code-textarea">
-                    <div id="editor" className="code"></div>
+                    <AceEditor
+                      mode={language}
+                      theme="monokai"
+                      name="code-editor"
+                      fontSize={14}
+                      width="100%"
+                      height="300px"
+                      value={code}
+                      onChange={handleCodeChange}
+                      setOptions={{
+                        enableBasicAutocompletion: true,
+                        enableLiveAutocompletion: true,
+                        enableSnippets: true,
+                        showLineNumbers: true,
+                        tabSize: 2,
+                      }}
+                    />
                   </div>
                 </div>
               </div>
