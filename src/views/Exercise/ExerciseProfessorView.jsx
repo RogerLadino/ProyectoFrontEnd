@@ -65,7 +65,7 @@ const ExerciseProfessorView = () => {
                     </button>
                   </div>
                   <div className="title-button-container" style={{ minWidth: "150px" }}>
-                    <Link to={`/classroom/${classroomId}/exercise/${exerciseId}/edit`} style={{ textDecoration: 'none', width: '100%'}}>
+                    <Link to={`/classroom/${classroomId}/exercise/${exerciseId}/edit`} style={{ textDecoration: 'none', width: '100%' }}>
                       <button className="card-button" type="button">
                         <FaPencilAlt className="icon-pencil" /> Editar ejercicio
                       </button>
@@ -119,9 +119,13 @@ const ExerciseProfessorView = () => {
                         </div>
                       </td>
                       <td>
-                        <button type="button" className="card-button">
-                          <FaCode className="icon-code" /> Ver código
-                        </button>
+                        <Link 
+                          to={`/classroom/${classroomId}/exercise/${exerciseId}/code/${submission.appUserId}`}
+                        >
+                          <button type="button" className="card-button">
+                            <FaCode className="icon-code" /> Ver código
+                          </button>
+                        </Link>
                       </td>
                     </tr>
                   ))}

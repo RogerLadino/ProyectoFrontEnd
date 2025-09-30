@@ -18,7 +18,7 @@ export const ExerciseView = () => {
 
   return (
     <>
-      {user.appRoleId == 1 ? <ExerciseProfessorView /> : <ExerciseStudentView />}
+      <ExerciseStudentView />
     </>
   )
 }
