@@ -6,8 +6,9 @@ import './Login.css';
 function LoginPage() {
   const navigate = useNavigate(); 
   const [message, setMessage] = useState(null); 
-  const [loading, setLoading] = useState(false);
-  
+  const [loading, setLoading] = useState(false);  
+
+
   const [credentials, setCredentials] = useState({
     email: '',
     password: ''
@@ -27,9 +28,13 @@ function LoginPage() {
     setLoading(true); 
 
     try {
-      const response = await axios.post('/api/login', credentials); 
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/Auth/login`, {
+        correoElectronico: credentials.email,
+        clave: credentials.password
+      });
+
+      localStorage.setItem('token', response.data.token);
       
-      console.log('Login exitoso:', response.data);
       setMessage({ type: 'success', text: '¡Inicio de sesión exitoso! Redirigiendo...' });
       
       setTimeout(() => navigate('/'), 1500); 
@@ -54,7 +59,6 @@ function LoginPage() {
   };
 
   return (
-    // 🛑 CAMBIO CLAVE: Añadimos un contenedor de ancho completo para anular el layout padre de Bootstrap
     <div className="w-100"> 
       <div className="login-wrapper">
         <div id="login-container"> 
