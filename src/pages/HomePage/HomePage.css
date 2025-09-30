@@ -1,0 +1,162 @@
+/* HomePage.css */
+
+/* --- 1. CONTENEDOR PRINCIPAL (LAYOUT) --- */
+.homepage.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: var(--page-h-padding);
+  padding-right: var(--page-h-padding);
+
+  /* COMPENSAR topbar: obliga al contenido a no quedar oculto */
+  padding-top: calc(var(--topbar-height) + 1rem); /* suficiente separación */
+  padding-bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+  flex-basis: 0;
+  flex-grow: 1;
+
+  /* Dejar el scroll al body a menos que necesites scroll interno */
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.homepage.container img {
+  max-width: 100%;   /* Nunca será más grande que el ancho del container */
+  height: auto;      /* Mantiene proporción */
+  display: block;    /* Elimina posibles espacios extra */
+  margin: 0 auto;    /* Centra las imágenes */
+}
+
+/* --- 2. SECCIÓN HERO (Compensación de Navegación y Espaciado) --- */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-top: 1rem;   /* pequeño espaciado interno */
+  padding-bottom: 3rem;
+  margin-bottom: 0;
+}
+
+/* Forzar que el texto y la imagen se comporten como dos columnas flexibles */
+.hero .header-text { flex: 1 1 380px; min-width: 260px; }
+.hero .hero-image  { flex: 1 1 420px; max-width: 480px; }
+
+.hero .hero-image img {
+  width: 100%;
+  max-height: var(--max-hero-img-height);
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.header-text h1 {
+  font-size: 4rem;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.big-circle {
+  width: 250px;
+  height: 250px;
+  background-color: #f77f72;
+  border-radius: 50%;
+}
+
+/* VENTAJAS */
+.advantages {
+  padding: 40px;
+  margin-top: 0;
+}
+
+.ventajas h2 {
+  color: white;
+  font-size: 2rem;
+  margin: 0 0 20px 0; 
+  font-weight: normal;
+  text-align: center;
+}
+
+.ventaja-items {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.ventaja-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  max-width: 150px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.icono {
+  margin-bottom: 8px;
+}
+
+/* --- 4. SECCIONES DE IMAGEN (EDITOR, TASKS, REPORTES) --- */
+.editor,
+.tasks {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-bottom: 0;
+}
+
+.editor h2,
+.tasks h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.editor-box,
+.task-box {
+  border-radius: 5px;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* CLAVE: evita que contenido interior sobresalga */
+  background-clip: padding-box;
+}
+
+.editor-box img,
+.task-box img {
+  width: 100%;
+  max-width: 100%;
+  max-height: var(--max-editor-img-height); /* prevenir alturas excesivas */
+  height: auto;
+  display: block;
+  object-fit: contain; /* mantiene proporción y no recorta */
+  margin: 0 auto;
+}
+
+/* --- 5. FOOTER DE LA PÁGINA --- */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: auto;
+}
+
+.hero, .advantages, .editor, .tasks {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-btn, .registro-btn {
+  background-color: #f77f72;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
