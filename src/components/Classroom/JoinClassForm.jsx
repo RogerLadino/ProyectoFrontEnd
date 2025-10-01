@@ -18,7 +18,7 @@ export default function JoinClassForm() {
 
   return (
     <form onSubmit={handleSubmit} className="mt-4 mb-4">
-      <div className="input-group" style={{ maxWidth: 400 }}>
+      <div className="d-flex gap-2" style={{ maxWidth: 400 }}>
         <input
           type="text"
           name="codigo"
