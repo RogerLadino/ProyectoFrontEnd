@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../../components/Navbar/Navbar";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Navbar from "../../components/Navigation/TopBar";
+import Sidebar from "../../components/Navigation/Sidebar";
 import { ClassroomContext } from "../../context/Classroom/ClassroomContext";
 import TeacherClassroomCard from "../../components/Classroom/TeacherClassroomCard";
 import * as classroomService from "../../services/classroom.service.js";
@@ -26,7 +26,7 @@ export default function TeacherClassroomView() {
 
   return (
     <>
-      <Navbar />
+      <TopBar />
       <div className="d-flex">
         <Sidebar />
         <main className="main-content p-4 w-100">

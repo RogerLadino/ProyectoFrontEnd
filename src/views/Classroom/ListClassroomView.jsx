@@ -3,15 +3,15 @@ import { ClassroomContext } from "../../context/Classroom/ClassroomContext";
 import JoinClassForm from "../../components/Classroom/JoinClassForm";
 import ClassroomCard from "../../components/Classroom/ClassroomCard";
 import Alert from "../../components/Alert";
-import Navbar from "../../components/Navbar/Navbar";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Navbar from "../../components/Navigation/TopBar";
+import Sidebar from "../../components/Navigation/Sidebar";
 
 export default function ListClassroomView() {
   const { classrooms, alerts } = useContext(ClassroomContext);
 
   return (
     <>
-      <Navbar />
+      <TopBar />
       <div className="d-flex">
         <Sidebar />
         <main className="main-content p-4 w-100">

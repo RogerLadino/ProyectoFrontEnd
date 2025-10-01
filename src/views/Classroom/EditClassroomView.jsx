@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Navbar from "../../components/Navbar/Navbar";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Navbar from "../../components/Navigation/TopBar";
+import Sidebar from "../../components/Navigation/Sidebar";
 import { ClassroomContext } from "../../context/Classroom/ClassroomContext";
 import * as classroomService from "../../services/classroom.service";
 
@@ -41,7 +41,7 @@ export default function EditClassroomView() {
 
   return (
     <>
-      <Navbar />
+      <TopBar />
       <div className="d-flex">
         <Sidebar />
         <main className="main-content p-4 w-100">
