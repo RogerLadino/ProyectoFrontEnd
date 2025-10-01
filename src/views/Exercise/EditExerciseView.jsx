@@ -62,7 +62,7 @@ const EditExerciseView = () => {
     <div className="container-fluid m-0 p-0">
       <TopBar />
 
-      <div className="row m-0 p-0">
+      <div className="row m-0 pt-3">
         {/* Sidebar */}
         <Sidebar />
 
@@ -72,7 +72,7 @@ const EditExerciseView = () => {
             <h2 className="mb-0">Editar Ejercicio</h2>
           </div>
 
-          <form className="edit-form" onSubmit={handleSubmit}>
+          <form className="edit-form col row" onSubmit={handleSubmit}>
             {/* Nombre */}
             <div className="input mb-3">
               <div className="input-label">
@@ -89,7 +89,7 @@ const EditExerciseView = () => {
             </div>
 
             {/* Descripción */}
-            <div className="input mb-3">
+            <div className="input mb-3" style={{ height: "140px"}}>
               <div className="input-label">
                 <i className="icon-circle-empty"></i>
                 <label>Descripción</label>
@@ -118,7 +118,7 @@ const EditExerciseView = () => {
 
             {/* Pruebas */}
             <div className="input mb-3" id="lista-pruebas">
-              <div className="input-label d-flex align-items-center gap-2">
+              <div className="input-label d-flex align-items-center gap-2 container-fluid">
                 <i className="icon-circle-empty"></i>
                 <label>Pruebas</label>
                 <div
@@ -130,7 +130,7 @@ const EditExerciseView = () => {
                 </div>
               </div>
 
-              <div className="test-section pruebas">
+              <div className="test-section pruebas container-fluid">
                 {pruebas.map((prueba, pIndex) => (
                   <TestCase
                     key={pIndex}
@@ -147,7 +147,7 @@ const EditExerciseView = () => {
               </div>
 
               {/* Botones */}
-              <div className="d-flex gap-5 mt-3">
+              <div className="d-flex gap-5 mt-3 container-fluid">
                 <button type="submit" className="button-secondary boton-guardar">
                   Guardar
                 </button>

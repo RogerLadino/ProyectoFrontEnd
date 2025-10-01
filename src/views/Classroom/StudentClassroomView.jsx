@@ -1,30 +1,17 @@
 import React, { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { TopBar } from "../../components/Navigation/TopBar";
-import Sidebar from "../../components/Navigation/Sidebar";
 import { ClassroomContext } from "../../context/Classroom/ClassroomContext";
-import TeacherClassroomCard from "../../components/Classroom/TeacherClassroomCard";
-import * as classroomService from "../../services/classroom.service.js";
-import ClassroomCard from "../../components/Classroom/ClassroomCard.jsx";
+import JoinClassForm from "../../components/Classroom/JoinClassForm";
+import ClassroomCard from "../../components/Classroom/ClassroomCard";
+import Alert from "../../components/Alert";
+import Sidebar from "../../components/Navigation/Sidebar";
+import { TopBar } from "../../components/Navigation/TopBar";
 
-export default function StudentClassroomView() {
-  const { classrooms, fetchClassrooms, pushAlert } = useContext(ClassroomContext);
+export default function ListClassroomView() {
+  const { classrooms, fetchClassrooms, alerts } = useContext(ClassroomContext);
 
   useEffect(() => {
-    fetchClassrooms();
-  }, []);
-
-  const handleDelete = async (id) => {
-    if (!window.confirm("¿Seguro de eliminar esta clase?")) return;
-    try {
-      await classroomService.deleteClassroom(id);
-      pushAlert("success", "Clase eliminada correctamente.");
-      fetchClassrooms();
-    } catch (error) {
-      console.error(error);
-      pushAlert("danger", "No se pudo eliminar la clase.");
-    }
-  };
+    fetchClassrooms()
+  }, [])
 
   return (
     <>
@@ -32,38 +19,23 @@ export default function StudentClassroomView() {
       <div className="d-flex">
         <Sidebar />
         <main className="main-content p-4 w-100">
-          {/* Botón Crear */}
-          <div className="d-flex justify-content-end mb-4 gap-2">
-            <Link
-              className="btn text-light"
-              to="/crear-clase"
-              style={{ backgroundColor: "var(--card)" }}
-            >
-              <i className="icon-plus-circled"></i> Crear Clase
-            </Link>
-          </div>
+          <h2>Clases en las que estás inscrito</h2>
 
-          {/* Lista de clases */}
-          <div className="clases-contenedor">
-            <h2>Clases que perteneces</h2>
+          <JoinClassForm />
 
-            {classrooms && classrooms.length > 0 ? (
-              <div className="d-flex gap-3 flex-wrap">
-                {classrooms.map((aula) => (
-                  <ClassroomCard
-                    key={aula.idAula || aula.id}
-                    aula={aula}
-                  />
-                ))}
-              </div>
-            ) : (
-              <p>No tienes clases aún. Crea una para comenzar.</p>
-            )}
-          </div>
+          {alerts && alerts.length > 0 && alerts.map((a) => <Alert key={a.id} alert={a} />)}
+
+          {classrooms && classrooms.length ? (
+            <div className="d-flex gap-3 flex-wrap mt-4">
+              {classrooms.map((aula) => (
+                <ClassroomCard key={aula.id || aula.idAula} aula={aula} />
+              ))}
+            </div>
+          ) : (
+            <p className="mt-4">No estás inscrito en ninguna clase.</p>
+          )}
         </main>
       </div>
     </>
   );
 }
-
-

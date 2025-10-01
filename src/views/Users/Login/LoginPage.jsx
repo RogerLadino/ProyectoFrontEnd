@@ -37,7 +37,7 @@ function LoginPage() {
       
       setMessage({ type: 'success', text: '¡Inicio de sesión exitoso! Redirigiendo...' });
       
-      setTimeout(() => navigate('/'), 1500); 
+      setTimeout(() => navigate('/clases'), 1500); 
 
     } catch (error) {
       console.error('Error de inicio de sesión:', error);

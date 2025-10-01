@@ -74,18 +74,18 @@ export const ListExerciseView = () => {
                   {/* Botones (solo para profesor) */}
                   {isProfessor && (
                     <div className="botones mb-2">
-                      <a className="clase-boton" href="/ejercicio/nuevo">
+                      <Link className="clase-boton" to={`/classroom/${classroomId}/exercise/create`}>
                         <i className="icon-plus"></i>
                         <FaPlusCircle />
                         <span>Nuevo Ejercicio</span>
-                      </a>
+                      </Link>
                       <a className="clase-boton" href="/reporte/calificaciones">
                         <FaChartBar />
                         <span>Calificaciones</span>
                       </a>
                       <Link 
                         className="clase-boton boton-editar-clase" 
-                        to={`/classroom/${classroomId}/edit`}
+                        to={`/editar-clase/${classroomId}`}
                       >
                         <FaPencilAlt />
                         <span>Editar Clase</span>

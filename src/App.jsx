@@ -5,6 +5,7 @@ import './styles/clases.css'
 import './styles/general.css';
 import './styles/styles.css';
 import './styles/navigation.css';
+import './styles/tablas.css';
 
 function App() {
   return (

@@ -11,6 +11,7 @@ import LoginPage from "../views/Users/Login/LoginPage";
 import RegisterPage from "../views/Users/Register/RegisterPage";
 import RecoverPasswordPage from "../views/Users/RecoverPassword/RecoverPasswordPage";
 import ResetPasswordPage from "../views/Users/ResetPassword/ResetPasswordPage";
+import { CodeView } from "../views/Code/CodeView";
 
 export const Navigation = () => {
   return (
@@ -28,6 +29,7 @@ export const Navigation = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/recover-password" element={<RecoverPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/classroom/:classroomId/exercise/:exerciseId/code/:userId" element={<CodeView />} />
       </Routes>
     </Router>
   );

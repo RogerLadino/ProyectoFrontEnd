@@ -3,17 +3,17 @@ import "../../styles/ejercicio.css";
 import Sidebar from "../../components/Navigation/Sidebar";
 import { TopBar } from "../../components/Navigation/TopBar";
 import { FaRegCircle, FaCheck, FaTimes, FaClock } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getExercisesById } from "../../services/exercises.service";
 import { getSubmissionById } from "../../services/submission.service";
 
 const ExerciseStudentView = () => {
   const [exercise, setExercise] = useState({})
   const [submission, setSubmission] = useState({})
-  const { classroomId, exerciseId} = useParams();
+  const { classroomId, exerciseId } = useParams();
 
-  useEffect(() =>{
-    const fetchData = async () => { 
+  useEffect(() => {
+    const fetchData = async () => {
       const exerciseData = await getExercisesById(classroomId, exerciseId);
       const submissionData = await getSubmissionById(exerciseId);
 
@@ -102,13 +102,15 @@ const ExerciseStudentView = () => {
               </table>
 
               {/* Botón Ver Código */}
-              <button
-                type="button"
-                className="button w-100"
-                onClick={handleVerCodigo}
-              >
-                Ver código
-              </button>
+              <Link to={`/classroom/${classroomId}/exercise/${exerciseId}/code/${submission.appUserId}`}>
+                <button
+                  type="button"
+                  className="button w-100"
+                  onClick={handleVerCodigo}
+                >
+                  Ver código
+                </button>
+              </Link>
             </div>
           </div>
         </main>

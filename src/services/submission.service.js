@@ -19,6 +19,25 @@ export async function getSubmissionById(exerciseId) {
   }
 }
 
+export async function getSubmissionByUserId(exerciseId, userId) {
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.get(`${API_URL}/api/exercise/${exerciseId}/submission/user/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching exercises:", error);
+    throw error;
+  }
+}
+
+
+
 export async function getSubmissions(exerciseId) {
   try {
     const token = localStorage.getItem("token");
