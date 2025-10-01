@@ -6,7 +6,6 @@ import { ExerciseView } from "../views/Exercise/ExerciseView";
 import CreateClassroomView from "../views/Classroom/CreateClassroomView";
 import EditClassroomView from "../views/Classroom/EditClassroomView";
 import ListClassroomView from "../views/Classroom/ListClassroomView";
-import TeacherClassroomView from "../views/Classroom/TeacherClassroomView";
 
 export const Navigation = () => {
   return (
