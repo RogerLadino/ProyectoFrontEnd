@@ -1,0 +1,133 @@
+/* --- ESTILOS DE CENTRALIZACIÓN Y FONDO --- */
+
+/* Contenedor principal: maneja el fondo, la altura y el centrado */
+.login-wrapper {
+  background-color: #1f1a1a; 
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  color: #fff; 
+  padding: 20px;
+}
+
+/* 🛑 CLAVE: Usamos ID con !important para forzar el ancho sobre Bootstrap */
+#login-container {
+  width: 60% !important;
+  padding: 40px 30px; 
+  border-radius: 12px;
+  text-align: center; 
+}
+
+/* --- Logo y Títulos --- */
+.logo {
+  display: inline-flex; 
+  align-items: center;
+  margin-bottom: 40px; 
+  text-decoration: none;
+  color: inherit; 
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  background-color: #ff7e70; 
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 14px;
+  color: #fff;
+}
+
+h1 {
+  margin-bottom: 40px; 
+  font-weight: 300;
+  font-size: 2.2rem;
+  line-height: 1.1;
+}
+
+/* --- Etiquetas y Dots --- */
+.form-label {
+  margin-bottom: 8px; 
+  font-size: 13px;
+  display: flex; 
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.label-text {
+  line-height: 1;
+  font-size: 13px;
+}
+
+/* --- Inputs (Formularios) --- */
+.form-control {
+  background-color: #2e2828; 
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  padding: 10px 12px;
+}
+
+.form-control:focus {
+  color: white;
+  background-color: #2e2828;
+  border-color: #ff7e70;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(255, 126, 112, 0.25);
+}
+
+/* --- Botón de Acción --- */
+.btn.btn-primary { 
+  background-color: #ff7e70; 
+  color: #1f1a1a;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  width: 100%; 
+}
+
+.btn.btn-primary:hover, .btn.btn-primary:focus {
+  background-color: #ff6a59;
+  color: #1f1a1a;
+  box-shadow: none;
+} 
+
+.spinner-border {
+    color: #1f1a1a !important; 
+}
+
+
+/* --- Texto de Pie de Página --- */
+.footer-links {
+  text-align: center;
+  margin-top: 40px !important; 
+}
+
+.footer-text {
+  font-size: 13px;
+  line-height: 1.6; 
+  margin: 10px 0;
+}
+
+.footer-text a {
+  color: #ff7e70; 
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+
+

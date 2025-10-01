@@ -48,7 +48,6 @@ const EditExerciseView = () => {
     const fetchData = async () => {
       const exercise = await getExercisesById(classroomId, exerciseId);
 
-      console.log(exercise)
       setNombre(exercise.name);
       setDescripcion(exercise.description);
       setFechaEntrega(exercise.dueDate);
