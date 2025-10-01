@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Navbar from "../../components/Navigation/TopBar";
+import TopBar from "../../components/Navigation/TopBar";
 import Sidebar from "../../components/Navigation/Sidebar";
 import { ClassroomContext } from "../../context/Classroom/ClassroomContext";
 import * as classroomService from "../../services/classroom.service";
