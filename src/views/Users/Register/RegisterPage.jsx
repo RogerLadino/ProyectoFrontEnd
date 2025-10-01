@@ -32,7 +32,7 @@ function RegisterPage() {
     setMessage(null);
 
     const payload = {
-      idRol: parseInt(formData.rol),
+      rolId: parseInt(formData.rol),
       primerNombre: formData.nombre1,
       segundoNombre: formData.nombre2,
       primerApellido: formData.apellido1,
@@ -42,7 +42,7 @@ function RegisterPage() {
     };
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/Auth/register`, payload);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/Auth/registro`, payload);
       setMessage({ type: 'success', text: '¡Registro exitoso! Serás redirigido al inicio de sesión.' });
       setTimeout(() => navigate('/login'), 2000);
     } catch (error) {
@@ -106,7 +106,7 @@ function RegisterPage() {
           <label htmlFor="password" className="form-label"><span className="dot"></span> Contraseña</label>
           <input type="password" id="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required />
         </div>
-        <button type="submit" className="btn w-100 submit-btn" disabled={loading}>
+        <button type="submit" className="btn w-100 submit-btn btn-primary" disabled={loading}>
           {loading ? 'Registrando...' : 'Registrarse'}
         </button>
         <p className="footer">

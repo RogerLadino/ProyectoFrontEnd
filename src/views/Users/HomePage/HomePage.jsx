@@ -11,7 +11,7 @@ function HomePage() {
           <div className="small-circle"></div> 
           <span>Nombre</span>
         </div>
-        <div className="topbar-right">
+        <div className="topbar-right d-flex gap-2">
           {/* Los a href deberían ser reemplazados por el componente <Link> de tu router, 
               pero por ahora se dejan como <a> */}
           <a href="/login" className="small-btn">Iniciar Sesión</a>

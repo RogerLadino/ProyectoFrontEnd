@@ -13,8 +13,7 @@
 
 /* 🛑 CLAVE: Usamos ID con !important para forzar el ancho sobre Bootstrap */
 #login-container {
-  max-width: 750px !important; /* ANCHO DESEADO FORZADO */
-  width: 100%;
+  width: 60% !important;
   padding: 40px 30px; 
   border-radius: 12px;
   text-align: center; 
