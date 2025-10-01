@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ClassroomContext } from "../../context/Classroom/ClassroomContext";
 import * as classroomService from "../../services/classroom.service";
 
@@ -20,7 +20,8 @@ export default function TeacherClassroomCard({ aula }) {
   };
 
   return (
-    <div
+    <Link
+      to={`/classroom/${aula.id}/exercise`}
       className="card text-light"
       style={{ width: 160, backgroundColor: "var(--card)" }}
     >
@@ -34,7 +35,8 @@ export default function TeacherClassroomCard({ aula }) {
 
       {/* Contenido */}
       <div className="card-body">
-        <p className="card-text">Código: {aula.codigo}</p>
+        <p className="card-text">{aula.name}</p>
+        <p className="card-text">Código: {aula.code}</p>
         <div className="d-flex gap-1">
           <button
             className="btn btn-sm btn-warning"
@@ -50,6 +52,6 @@ export default function TeacherClassroomCard({ aula }) {
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

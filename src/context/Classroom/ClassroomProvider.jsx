@@ -20,7 +20,7 @@ export default function ClassroomProvider({ children }) {
   /** 🌐 Carga inicial de aulas desde el backend */
   const fetchClassrooms = async () => {
     try {
-      const data = await classroomService.fetchUserClassrooms();
+      const data = await classroomService.getMyClassrooms();
       setClassrooms(data);
     } catch (err) {
       pushAlert("danger", "Error cargando aulas.");
@@ -30,7 +30,7 @@ export default function ClassroomProvider({ children }) {
   /** ➕ Unirse a una clase mediante código */
   const joinClassroom = async (code) => {
     try {
-      const aula = await classroomService.joinClassroomByCode(code);
+      const aula = await classroomService.joinClassroom(code);
       setClassrooms((prev) => [...prev, aula]);
       pushAlert("success", "Te uniste a la clase correctamente.");
       return aula;
@@ -51,10 +51,6 @@ export default function ClassroomProvider({ children }) {
       prev.map((c) => (c.id === id ? { ...c, ...updatedData } : c))
     );
   };
-
-  useEffect(() => {
-    fetchClassrooms();
-  }, []);
 
   return (
     <ClassroomContext.Provider

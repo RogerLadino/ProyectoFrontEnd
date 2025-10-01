@@ -5,8 +5,9 @@ import Sidebar from "../../components/Navigation/Sidebar";
 import { ClassroomContext } from "../../context/Classroom/ClassroomContext";
 import TeacherClassroomCard from "../../components/Classroom/TeacherClassroomCard";
 import * as classroomService from "../../services/classroom.service.js";
+import ClassroomCard from "../../components/Classroom/ClassroomCard.jsx";
 
-export default function TeacherClassroomView() {
+export default function StudentClassroomView() {
   const { classrooms, fetchClassrooms, pushAlert } = useContext(ClassroomContext);
 
   useEffect(() => {
@@ -44,15 +45,14 @@ export default function TeacherClassroomView() {
 
           {/* Lista de clases */}
           <div className="clases-contenedor">
-            <h2>Clases que dictas</h2>
+            <h2>Clases que perteneces</h2>
 
             {classrooms && classrooms.length > 0 ? (
               <div className="d-flex gap-3 flex-wrap">
                 {classrooms.map((aula) => (
-                  <TeacherClassroomCard
+                  <ClassroomCard
                     key={aula.idAula || aula.id}
                     aula={aula}
-                    onDelete={() => handleDelete(aula.idAula || aula.id)}
                   />
                 ))}
               </div>
@@ -65,4 +65,5 @@ export default function TeacherClassroomView() {
     </>
   );
 }
+
 

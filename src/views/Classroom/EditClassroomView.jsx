@@ -6,9 +6,9 @@ import { ClassroomContext } from "../../context/Classroom/ClassroomContext";
 import * as classroomService from "../../services/classroom.service";
 
 export default function EditClassroomView() {
-  const { id } = useParams(); // Viene desde la ruta /editar-clase/:id
+  const { id } = useParams(); 
   const navigate = useNavigate();
-  const { fetchClassrooms, pushAlert } = useContext(ClassroomContext);
+  const { pushAlert } = useContext(ClassroomContext);
 
   const [nombre, setNombre] = useState("");
 
@@ -16,22 +16,24 @@ export default function EditClassroomView() {
     const loadClassroom = async () => {
       try {
         const classroom = await classroomService.getClassroomById(id);
+
         setNombre(classroom.nombre);
       } catch (error) {
         console.error(error);
         pushAlert("danger", "No se pudo cargar la información de la clase.");
-        navigate("/clases");
       }
     };
+
     loadClassroom();
-  }, [id, navigate, pushAlert]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await classroomService.updateClassroom(id, { nombre });
+      await classroomService.updateClassroom(id, { name: nombre });
+
       pushAlert("success", "Clase actualizada correctamente.");
-      fetchClassrooms();
+
       navigate("/clases");
     } catch (error) {
       console.error(error);
@@ -67,7 +69,7 @@ export default function EditClassroomView() {
                   type="text"
                   name="nombre"
                   className="form-control"
-                  value={nombre}
+                  value={nombre ?? ""} 
                   onChange={(e) => setNombre(e.target.value)}
                   required
                 />

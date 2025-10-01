@@ -18,6 +18,7 @@ export const getMyClassrooms = async () => {
     const response = await axios.get(
       `${API_URL}/api/classroom/my-classrooms`, getAuthHeaders()
     );
+    console.log(response)
     
     return response.data;
   } catch (error) {
