@@ -31,7 +31,7 @@ export default function ClassroomProvider({ children }) {
   const joinClassroom = async (code) => {
     try {
       const aula = await classroomService.joinClassroom(code);
-      setClassrooms((prev) => [...prev, aula]);
+      await fetchClassrooms()
       pushAlert("success", "Te uniste a la clase correctamente.");
       return aula;
     } catch (err) {

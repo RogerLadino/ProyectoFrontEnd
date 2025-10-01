@@ -123,7 +123,7 @@ export function CodeView() {
               <div className="student-info-item">
                 <FiCircle className="icon-warning" />
                 <p className="nombre-usuario">
-                {`${submission.appUser.firstName} ${submission.appUser.lastName}`}
+                {submission.appUser ? `${submission.appUser.firstName} ${submission.appUser.lastName}` : ""}
                 </p>
               </div>
 
