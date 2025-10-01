@@ -1,6 +1,6 @@
 import React from "react";
 
-export default TopBar = () => {
+export const TopBar = () => {
   return (
     <nav className="navbar w-100 navbar-expand-md navbar-dark">
       <div className="container-fluid">

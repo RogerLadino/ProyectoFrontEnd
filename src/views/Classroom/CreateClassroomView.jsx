@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { ClassroomContext } from "../../context/Classroom/ClassroomContext";
-import TopBar from "../../components/Navigation/TopBar";
+import { TopBar } from "../../components/Navigation/TopBar";
 import Sidebar from "../../components/Navigation/Sidebar";
 import { useNavigate } from "react-router-dom";
 import * as classroomService from "../../services/classroom.service";
@@ -16,7 +16,7 @@ export default function CreateClassroomView() {
     try {
       await classroomService.createClassroom({
         name: nombre
-       });
+      });
 
       pushAlert("success", "Clase creada exitosamente.");
 

@@ -3,7 +3,7 @@ import { ClassroomContext } from "../../context/Classroom/ClassroomContext";
 import JoinClassForm from "../../components/Classroom/JoinClassForm";
 import ClassroomCard from "../../components/Classroom/ClassroomCard";
 import Alert from "../../components/Alert";
-import TopBar from "../../components/Navigation/TopBar";
+import { TopBar } from "../../components/Navigation/TopBar";
 import Sidebar from "../../components/Navigation/Sidebar";
 
 export default function ListClassroomView() {

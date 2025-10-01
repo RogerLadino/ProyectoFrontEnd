@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import TopBar from "../../components/Navigation/TopBar";
+import { TopBar } from "../../components/Navigation/TopBar";
 import Sidebar from "../../components/Navigation/Sidebar";
 import { ClassroomContext } from "../../context/Classroom/ClassroomContext";
 import TeacherClassroomCard from "../../components/Classroom/TeacherClassroomCard";
