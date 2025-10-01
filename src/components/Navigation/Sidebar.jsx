@@ -25,7 +25,7 @@ const Sidebar = () => {
         <ul className="list-unstyled">
           <i className="divisor"></i>
           <li className="nav-item home">
-            <Link to="/">
+            <Link to="/clases">
               <i className="icon-home"></i>
               <span>Inicio</span>
             </Link>
