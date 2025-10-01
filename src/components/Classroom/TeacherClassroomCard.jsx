@@ -20,8 +20,7 @@ export default function TeacherClassroomCard({ aula }) {
   };
 
   return (
-    <Link
-      to={`/classroom/${aula.id}/exercise`}
+    <div
       className="card text-light"
       style={{ width: 160, backgroundColor: "var(--card)" }}
     >
@@ -51,7 +50,16 @@ export default function TeacherClassroomCard({ aula }) {
             Eliminar
           </button>
         </div>
+        <button
+          className="btn btn-sm btn-primary mt-2"
+          style={{
+            height: "30px"
+          }}
+          onClick={() => navigate(`/classroom/${aula.id}/exercise`)}
+        >
+          Ir
+        </button>
       </div>
-    </Link>
+    </div>
   );
 }
