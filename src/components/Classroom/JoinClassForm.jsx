@@ -12,6 +12,7 @@ export default function JoinClassForm() {
       await joinClassroom(code.trim());
       setCode("");
     } catch (err) {
+      console.error("Error al unirse a la clase:", err);
       // el context ya maneja los alerts
     }
   };

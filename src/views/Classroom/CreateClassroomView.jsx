@@ -9,7 +9,7 @@ import '../../styles/clases.css'
 export default function CreateClassroomView() {
   const [nombre, setNombre] = useState("");
   const navigate = useNavigate();
-  const { fetchClassrooms, pushAlert } = useContext(ClassroomContext);
+  const { pushAlert } = useContext(ClassroomContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +22,7 @@ export default function CreateClassroomView() {
 
       navigate("/clases");
     } catch (error) {
-      console.error(error);
+      console.error("Error al crear la clase:", error);
       pushAlert("danger", "No se pudo crear la clase.");
     }
   };

@@ -11,7 +11,7 @@ export default function TeacherClassroomView() {
 
   useEffect(() => {
     fetchClassrooms();
-  }, []);
+  }, [fetchClassrooms]);
 
   const handleDelete = async (id) => {
     if (!window.confirm("¿Seguro de eliminar esta clase?")) return;
@@ -20,7 +20,7 @@ export default function TeacherClassroomView() {
       pushAlert("success", "Clase eliminada correctamente.");
       fetchClassrooms();
     } catch (error) {
-      console.error(error);
+      console.error("Error al eliminar la clase:", error);
       pushAlert("danger", "No se pudo eliminar la clase.");
     }
   };

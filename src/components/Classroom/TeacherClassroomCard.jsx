@@ -14,7 +14,7 @@ export default function TeacherClassroomCard({ aula }) {
       pushAlert("success", "Clase eliminada correctamente.");
       fetchClassrooms();
     } catch (error) {
-      console.error(error);
+      console.error("Error al eliminar la clase:", error);
       pushAlert("danger", "No se pudo eliminar la clase.");
     }
   };

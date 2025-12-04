@@ -19,13 +19,13 @@ export default function EditClassroomView() {
 
         setNombre(classroom.nombre);
       } catch (error) {
-        console.error(error);
+        console.error("Error al cargar la clase:", error);
         pushAlert("danger", "No se pudo cargar la información de la clase.");
       }
     };
 
     loadClassroom();
-  }, []);
+  }, [id, pushAlert]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ export default function EditClassroomView() {
 
       navigate("/clases");
     } catch (error) {
-      console.error(error);
+      console.error("Error al actualizar la clase:", error);
       pushAlert("danger", "No se pudo actualizar la clase.");
     }
   };
