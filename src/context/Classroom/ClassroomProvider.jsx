@@ -1,4 +1,5 @@
-  import React, { useState, useEffect } from "react";
+  import React, { useState } from "react";
+  import PropTypes from "prop-types";
   import { ClassroomContext } from "./ClassroomContext";
   import * as classroomService from "../../services/classroom.service.js";
 
@@ -71,3 +72,7 @@
       </ClassroomContext.Provider>
     );
   }
+
+  ClassroomProvider.propTypes = {
+    children: PropTypes.node.isRequired
+  };
