@@ -23,9 +23,9 @@ export default function ListClassroomView() {
 
           <JoinClassForm />
 
-          {alerts && alerts.length > 0 && alerts.map((a) => <Alert key={a.id} alert={a} />)}
+          {alerts?.length > 0 && alerts.map((a) => <Alert key={a.id} alert={a} />)}
 
-          {classrooms && classrooms.length ? (
+          {classrooms?.length ? (
             <div className="d-flex gap-3 flex-wrap mt-4">
               {classrooms.map((aula) => (
                 <ClassroomCard key={aula.id || aula.idAula} aula={aula} />
