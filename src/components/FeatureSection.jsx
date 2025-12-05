@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function FeatureSection({ sectionClassName, boxClassName, title, imageSrc }) {
   return (
@@ -10,5 +11,12 @@ function FeatureSection({ sectionClassName, boxClassName, title, imageSrc }) {
     </section>
   );
 }
+
+FeatureSection.propTypes = {
+  sectionClassName: PropTypes.string.isRequired,
+  boxClassName: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  imageSrc: PropTypes.string.isRequired
+};
 
 export default FeatureSection;
