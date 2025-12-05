@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export default function ClassroomCard({ aula }) {
   const id = aula.id || aula.idAula;
@@ -20,3 +21,12 @@ export default function ClassroomCard({ aula }) {
     </Link>
   );
 }
+
+ClassroomCard.propTypes = {
+  aula: PropTypes.shape({
+    id: PropTypes.number,
+    idAula: PropTypes.number,
+    nombre: PropTypes.string,
+    name: PropTypes.string
+  }).isRequired
+};

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import { ClassroomContext } from "../../context/Classroom/ClassroomContext";
 import * as classroomService from "../../services/classroom.service";
 
@@ -63,3 +64,13 @@ export default function TeacherClassroomCard({ aula }) {
     </div>
   );
 }
+
+TeacherClassroomCard.propTypes = {
+  aula: PropTypes.shape({
+    id: PropTypes.number,
+    idAula: PropTypes.number,
+    nombre: PropTypes.string,
+    name: PropTypes.string,
+    code: PropTypes.string
+  }).isRequired
+};
