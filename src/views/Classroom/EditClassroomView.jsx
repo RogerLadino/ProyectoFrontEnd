@@ -62,11 +62,12 @@ export default function EditClassroomView() {
           >
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label className="form-label d-flex align-items-center gap-2">
+                <label htmlFor="nombre" className="form-label d-flex align-items-center gap-2">
                   <i className="icon-circle-empty"></i> Nombre de la clase
                 </label>
                 <input
                   type="text"
+                  id="nombre"
                   name="nombre"
                   className="form-control"
                   value={nombre ?? ""} 

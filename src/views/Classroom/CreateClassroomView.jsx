@@ -48,12 +48,13 @@ export default function CreateClassroomView() {
           >
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label className="form-label d-flex align-items-center gap-2">
+                <label htmlFor="nombre" className="form-label d-flex align-items-center gap-2">
                   <i className="icon-circle-empty"></i>
                   <span>Nombre de la clase</span>
                 </label>
                 <input
                   type="text"
+                  id="nombre"
                   name="nombre"
                   className="form-control"
                   placeholder="Ejemplo: Matemáticas"

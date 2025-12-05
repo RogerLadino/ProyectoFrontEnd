@@ -11,7 +11,7 @@ export default function ListClassroomView() {
 
   useEffect(() => {
     fetchClassrooms()
-  }, [])
+  }, [fetchClassrooms])
 
   return (
     <>

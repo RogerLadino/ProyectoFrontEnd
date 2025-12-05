@@ -18,7 +18,7 @@ export default function ListClassroomView() {
 
   return (
     <>
-      {user.appRoleId == 1 ? <TeacherClassroomView /> : <StudentClassroomView />}
+      {user.appRoleId === 1 ? <TeacherClassroomView /> : <StudentClassroomView />}
     </>
   )
 }
