@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function Alert({ alert }) {
   return (
@@ -7,3 +8,11 @@ export default function Alert({ alert }) {
     </div>
   );
 }
+
+Alert.propTypes = {
+  alert: PropTypes.shape({
+    id: PropTypes.string,
+    category: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired
+  }).isRequired
+};
