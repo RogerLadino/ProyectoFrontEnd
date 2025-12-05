@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { ClassroomContext } from "../../context/Classroom/ClassroomContext";
 import * as classroomService from "../../services/classroom.service";
@@ -9,7 +9,7 @@ export default function TeacherClassroomCard({ aula }) {
   const { fetchClassrooms, pushAlert } = useContext(ClassroomContext);
 
   const handleDelete = async () => {
-    if (!window.confirm("¿Seguro de eliminar esta clase?")) return;
+    if (!globalThis.confirm("¿Seguro de eliminar esta clase?")) return;
     try {
       await classroomService.deleteClassroom(aula.idAula || aula.id);
       pushAlert("success", "Clase eliminada correctamente.");

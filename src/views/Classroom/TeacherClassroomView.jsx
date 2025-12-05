@@ -14,7 +14,7 @@ export default function TeacherClassroomView() {
   }, [fetchClassrooms]);
 
   const handleDelete = async (id) => {
-    if (!window.confirm("¿Seguro de eliminar esta clase?")) return;
+    if (!globalThis.confirm("¿Seguro de eliminar esta clase?")) return;
     try {
       await classroomService.deleteClassroom(id);
       pushAlert("success", "Clase eliminada correctamente.");
