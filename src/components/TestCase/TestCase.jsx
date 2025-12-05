@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import TestCaseHeader from "./TestCaseHeader";
 import TestCaseFunction from "./TestCaseFunction";
 import TestCaseParameters from "./TestCaseParameters";
@@ -51,6 +52,17 @@ const TestCase = ({
       )}
     </div>
   );
+};
+
+TestCase.propTypes = {
+  prueba: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
+  actualizarPrueba: PropTypes.func.isRequired,
+  eliminarPrueba: PropTypes.func.isRequired,
+  agregarParametro: PropTypes.func.isRequired,
+  eliminarParametro: PropTypes.func.isRequired,
+  actualizarParametro: PropTypes.func.isRequired,
+  actualizarSalida: PropTypes.func.isRequired
 };
 
 export default TestCase;
