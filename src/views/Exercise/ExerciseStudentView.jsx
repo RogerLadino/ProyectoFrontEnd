@@ -8,8 +8,8 @@ import { getExercisesById } from "../../services/exercises.service";
 import { getSubmissionById } from "../../services/submission.service";
 
 const ExerciseStudentView = () => {
-  const [exercise, setExercise] = useState({})
-  const [submission, setSubmission] = useState({})
+  const [exercise, setExercise] = useState({});
+  const [submission, setSubmission] = useState({});
   const { classroomId, exerciseId } = useParams();
 
   useEffect(() => {
@@ -17,15 +17,15 @@ const ExerciseStudentView = () => {
       const exerciseData = await getExercisesById(classroomId, exerciseId);
       const submissionData = await getSubmissionById(exerciseId);
 
-      setExercise(exerciseData)
-      setSubmission(submissionData)
-    }
+      setExercise(exerciseData);
+      setSubmission(submissionData);
+    };
 
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   const handleVerCodigo = () => {
-    console.log("Navegar a ver código del ejercicio:", ejercicio.nombre);
+    console.log("Navegar a ver código del ejercicio:", exercise.nombre);
   };
 
   return (
@@ -53,6 +53,12 @@ const ExerciseStudentView = () => {
             {/* Info de la entrega */}
             <div className="exercise-info col-12 col-lg-4 mb-3">
               <table className="statistics table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col">Indicador</th>
+                    <th scope="col">Resultado</th>
+                  </tr>
+                </thead>
                 <tbody>
                   {/* Nota */}
                   <tr className="statistic">
@@ -60,9 +66,7 @@ const ExerciseStudentView = () => {
                       <FaRegCircle className="icon-circle-empty" />
                       <span>Nota</span>
                     </td>
-                    <td className="score">
-                      {submission.grade}
-                    </td>
+                    <td className="score">{submission.grade}</td>
                   </tr>
 
                   {/* Resuelto */}
@@ -102,7 +106,9 @@ const ExerciseStudentView = () => {
               </table>
 
               {/* Botón Ver Código */}
-              <Link to={`/classroom/${classroomId}/exercise/${exerciseId}/code/${submission.appUserId}`}>
+              <Link
+                to={`/classroom/${classroomId}/exercise/${exerciseId}/code/${submission.appUserId}`}
+              >
                 <button
                   type="button"
                   className="button w-100"
