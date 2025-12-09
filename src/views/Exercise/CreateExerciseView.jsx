@@ -30,9 +30,15 @@ const CreateExerciseView = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    await createExercise(classroomId, nombre, descripcion, fechaEntrega, getParsedTestCases());
-  
+
+    await createExercise(
+      classroomId,
+      nombre,
+      descripcion,
+      fechaEntrega,
+      getParsedTestCases()
+    );
+
     navigate(`/classroom/${classroomId}/exercise`);
   };
 
@@ -54,9 +60,10 @@ const CreateExerciseView = () => {
             <div className="input mb-3">
               <div className="input-label">
                 <i className="icon-circle-empty"></i>
-                <label>Nombre del ejercicio</label>
+                <label htmlFor="nombreEjercicio">Nombre del ejercicio</label>
               </div>
               <input
+                id="nombreEjercicio"
                 type="text"
                 className="input-field"
                 placeholder="Nombre del ejercicio"
@@ -66,12 +73,13 @@ const CreateExerciseView = () => {
             </div>
 
             {/* Descripción */}
-            <div className="input mb-3" style={{height: "140px"}}>
+            <div className="input mb-3" style={{ height: "140px" }}>
               <div className="input-label">
                 <i className="icon-circle-empty"></i>
-                <label>Descripción</label>
+                <label htmlFor="descripcionEjercicio">Descripción</label>
               </div>
               <textarea
+                id="descripcionEjercicio"
                 className="textbox-field"
                 placeholder="Descripción del ejercicio"
                 value={descripcion}
@@ -83,9 +91,10 @@ const CreateExerciseView = () => {
             <div className="input mb-3">
               <div className="input-label">
                 <i className="icon-circle-empty"></i>
-                <label>Fecha de entrega</label>
+                <label htmlFor="fechaEntrega">Fecha de entrega</label>
               </div>
               <input
+                id="fechaEntrega"
                 type="datetime-local"
                 className="date-input"
                 value={fechaEntrega}
@@ -97,22 +106,29 @@ const CreateExerciseView = () => {
             <div className="input mb-3" id="lista-pruebas">
               <div className="input-label d-flex align-items-center gap-2 container-fluid">
                 <i className="icon-circle-empty"></i>
-                <label>Pruebas</label>
+                <label htmlFor="pruebas">Pruebas</label>
                 <div
                   className="circle-plus"
+                  role="button"
+                  tabIndex={0}
                   style={{ cursor: "pointer" }}
                   onClick={agregarPrueba}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      agregarPrueba();
+                    }
+                  }}
                 >
                   <FaPlusCircle />
                 </div>
               </div>
 
               <div className="test-section pruebas container-fluid">
-                {pruebas.map((prueba, pIndex) => (
+                {pruebas.map((prueba) => (
                   <TestCase
-                    key={pIndex}
+                    key={prueba.id} // ✅ usar id único en lugar de índice
                     prueba={prueba}
-                    index={pIndex}
+                    index={pruebas.indexOf(prueba)}
                     actualizarPrueba={actualizarPrueba}
                     eliminarPrueba={eliminarPrueba}
                     agregarParametro={agregarParametro}
