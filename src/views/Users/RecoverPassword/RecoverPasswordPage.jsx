@@ -24,7 +24,7 @@ function RecoverPasswordPage() {
 
   const handleCodeChange = (e, index) => {
     const { value } = e.target;
-    if (/[^0-9]/.test(value)) return; // Solo permitir números
+    if (/\D/.test(value)) return; // Solo permitir números
     
     const newCode = [...verificationCode];
     newCode[index] = value;
@@ -153,29 +153,30 @@ function RecoverPasswordPage() {
 
           {/* Sección del Código de Verificación */}
           <div className="code-section">
-            <label className="input-label">
-              <span className="circle-empty"></span> Código de verificación
-            </label>
-            <div className="code-inputs d-flex justify-content-center gap-2 mb-4"> {/* Usamos d-flex y gap-2 de Bootstrap */}
-              {verificationCode.map((digit, index) => (
-                <input 
-                  key={index}
-                  type="text" 
-                  maxLength="1" 
-                  className="form-control text-center p-2" // Clases de Bootstrap
-                  disabled={step === 'sendCode' || loading}
-                  required
-                  value={digit}
-                  onChange={(e) => handleCodeChange(e, index)}
-                  onKeyDown={(e) => handleKeyDown(e, index)}
-                  ref={el => inputRefs.current[index] = el} // Referencia para el manejo del foco
-                  style={{ width: '40px' }} // Estilo manual para el tamaño
-                />
-              ))}
-            </div>
+             <label className="input-label" htmlFor="verificationCode0">
+          <span className="circle-empty"></span> Código de verificación
+        </label>
+      <div className="code-inputs d-flex justify-content-center gap-2 mb-4">
+        {verificationCode.map((digit, index) => (
+      <input 
+          key={digit.id}
+          id={`verificationCode${index}`}   // id único por cada input
+          type="text" 
+          maxLength="1" 
+          className="form-control text-center p-2"
+          disabled={step === 'sendCode' || loading}
+          required
+         value={digit}
+          onChange={(e) => handleCodeChange(e, index)}
+          onKeyDown={(e) => handleKeyDown(e, index)}
+          ref={el => inputRefs.current[index] = el}
+          style={{ width: '40px' }}
+        />
+          ))}
+          </div>
           </div>
 
-          <div className="button-group d-grid"> {/* d-grid para que el botón ocupe todo el ancho */}
+          <div className="button-group d-grid"> {/* d-grid para que el botón ocupe cada parte de el ancho */}
             {/* Botón ENVIAR CÓDIGO (Solo en el paso 1) */}
             {step === 'sendCode' && (
               <button 
@@ -185,7 +186,11 @@ function RecoverPasswordPage() {
               >
                 {loading ? (
                   <>
-                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    <span 
+                    className="spinner-border spinner-border-sm me-2" 
+                    role="status" 
+                    aria-hidden="true">
+                    </span>{''}
                     Enviando...
                   </>
                 ) : (
@@ -203,7 +208,11 @@ function RecoverPasswordPage() {
               >
                 {loading ? (
                   <>
-                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    <span 
+                    className="spinner-border spinner-border-sm me-2" 
+                    role="status" 
+                    aria-hidden="true">
+                    </span>{''}
                     Verificando...
                   </>
                 ) : (
