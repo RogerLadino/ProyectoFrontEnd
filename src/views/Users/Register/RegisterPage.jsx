@@ -32,7 +32,7 @@ function RegisterPage() {
     setMessage(null);
 
     const payload = {
-      rolId: parseInt(formData.rol),
+      rolId: Number.parseInt(formData.rol),
       primerNombre: formData.nombre1,
       segundoNombre: formData.nombre2,
       primerApellido: formData.apellido1,
