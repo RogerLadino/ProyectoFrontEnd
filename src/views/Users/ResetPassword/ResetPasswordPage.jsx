@@ -110,7 +110,7 @@ function ResetPasswordPage() {
 
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="input-label form-label">
+              <label className="input-label form-label" htmlFor='newPassword'>
                 <span className="circle-empty"></span> Nueva Contraseña
               </label>
               <input 
@@ -124,7 +124,7 @@ function ResetPasswordPage() {
             </div>
 
             <div className="mb-4">
-              <label className="input-label form-label">
+              <label className="input-label form-label" htmlFor='confirmPassword'>
                 <span className="circle-empty"></span> Repetir Nueva Contraseña
               </label>
               <input 
@@ -144,7 +144,11 @@ function ResetPasswordPage() {
             >
               {loading ? (
                   <>
-                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    <span 
+                    className="spinner-border spinner-border-sm me-2" 
+                    role="status" 
+                    aria-hidden="true">
+                    </span>{' '}
                     Cambiando...
                   </>
                 ) : (
