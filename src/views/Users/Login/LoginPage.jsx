@@ -47,7 +47,7 @@ function LoginPage() {
       if (error.response) {
         if (error.response.status === 401) {
           errorMessage = 'Credenciales inválidas. Verifica tu email y contraseña.';
-        } else if (error.response.data && error.response.data.message) {
+        } else if (error.response.data?.message) {
           errorMessage = error.response.data.message; 
         }
       }
@@ -124,8 +124,10 @@ function LoginPage() {
               >
                 {loading ? (
                   <>
-                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                    Cargando...
+                    <span
+                  className="spinner-border spinner-border-sm me-2"
+                  aria-hidden="true"
+                  ></span>{' '}Cargando...
                   </>
                 ) : (
                   'Iniciar Sesión'
