@@ -21,6 +21,7 @@ export const getMyClassrooms = async () => {
     
     return response.data;
   } catch (error) {
+    console.log("Error: " + error)
     return [];
   }
 };
@@ -33,6 +34,7 @@ export const createClassroom = async (data) => {
     const response = await axios.post(`${API_URL}/api/classroom`, data, getAuthHeaders());
     return response.data;
   } catch (error) {
+    console.log("Error: " + error)
     throw error;
   }
 };
@@ -44,6 +46,7 @@ export const joinClassroom = async (code) => {
     const response = await axios.post(`${API_URL}/api/classroom/join/${code}`, {}, getAuthHeaders());
     return response.data;
   } catch (error) {
+    console.log("Error: " + error)
     throw error;
   }
 };
@@ -55,6 +58,7 @@ export const getClassroomById = async (id) => {
     const response = await axios.get(`${API_URL}/api/classroom/${id}`, getAuthHeaders());
     return response.data;
   } catch (error) {
+    console.log("Error: " + error)
     throw error;
   }
 };
@@ -66,6 +70,7 @@ export const updateClassroom = async (id, data) => {
     const response = await axios.put(`${API_URL}/api/classroom/${id}`, data, getAuthHeaders());
     return response.data;
   } catch (error) {
+    console.log("Error: " + error)
     throw error;
   }
 };
@@ -76,6 +81,7 @@ export const deleteClassroom = async (id) => {
     // DELETE requiere (URL, config)
     await axios.delete(`${API_URL}/api/classroom/${id}`, getAuthHeaders());
   } catch (error) {
+    console.log("Error: " + error)
     throw error;
   }
 };
