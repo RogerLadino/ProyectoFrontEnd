@@ -28,6 +28,7 @@ export default function ClassroomProvider({ children }) {
       setClassrooms(data);
     } catch (err) {
       pushAlert("danger", "Error cargando aulas.");
+      console.log("Excepción: " + err)
     }
   };
 
