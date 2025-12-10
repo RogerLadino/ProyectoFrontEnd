@@ -65,7 +65,7 @@ export default function ClassroomProvider({ children }) {
     joinClassroom,
     addClassroom,
     updateClassroom,
-  }), [])
+  }), [classrooms, alerts])
 
   return (
     <ClassroomContext.Provider
