@@ -23,6 +23,7 @@ import { TopBar } from "../../components/Navigation/TopBar";
 import { Link, useParams } from "react-router-dom";
 import { getExercisesById } from "../../services/exercises.service";
 import { getSubmissionByUserId } from "../../services/submission.service";
+import { getUserProfile } from "../../services/user.service";
 
 export function CodeView() {
   const [activeTab, setActiveTab] = useState("ejercicio");
@@ -31,13 +32,16 @@ export function CodeView() {
   const { classroomId, exerciseId, userId } = useParams();
   const [exercise, setExercise] = useState({});
   const [submission, setSubmission] = useState({});
+  const [isProfessor, setIsProfessor] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const exerciseData = await getExercisesById(classroomId, exerciseId);
         const submissionData = await getSubmissionByUserId(parseInt(exerciseId), parseInt(userId));
+        const user = await getUserProfile(parseInt(userId))
 
+        setIsProfessor(user.appRoleId == 1 ? true : false)
         setExercise(exerciseData);
         setSubmission(submissionData);
       } catch (e) {
@@ -47,8 +51,6 @@ export function CodeView() {
 
     fetchData();
   }, [])
-
-  const isProfessor = true;
 
   const connectionRef = useRef(null);
 
